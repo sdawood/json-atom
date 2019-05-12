@@ -2,11 +2,11 @@
   "name": "json-atom",
   "version": "0.0.0-development",
   "description": "Deep Immutable Composite Map, for the modern reactive functional programmer in ES2020+",
-  "main": "lib/transform.js",
+  "main": "lib/index.js",
   "scripts": {
     "commit": "git-cz",
     "test": "npm run eslint && jest --verbose",
-    "prebuild": "rimraf lib",
+    "prebuild": "rm -rf lib",
     "build": "babel --copy-files --out-dir lib --ignore *.spec.js src",
     "eslint": "./node_modules/.bin/eslint src --quiet",
     "semantic-release": "semantic-release",

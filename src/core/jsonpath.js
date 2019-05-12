@@ -13,6 +13,7 @@ const favorCurry = true;
 
 const $interface = {
     value,
+    apply: value,
     get,
     set,
     query
