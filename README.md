@@ -3,6 +3,47 @@ master|develop|npm
 [![Build Status](https://travis-ci.org/sdawood/json-atom.svg?branch=master)](https://travis-ci.org/sdawood/json-atom)|[![Build Status](https://travis-ci.org/sdawood/json-atom.svg?branch=develop)](https://travis-ci.org/sdawood/json-atom)|[![npm version](https://badge.fury.io/js/json-atom.svg)](https://badge.fury.io/js/json-atom)
 
 # json-atom
+```
+    const {get, set, apply} = require('json-atom');
+    const data = {
+        user: {
+            contact: {
+                home: {
+                    number: 11111
+                }, mobile: {
+                    number: 22222
+                }
+            },
+            posts: [
+                {content: 'Hello World!', likes: 10},
+                {content: 'Goodbye World!', likes: 1}
+            ]
+        }
+    };
+
+    let result = get('$.user.contact.home.number')(data);
+    // 11111
+
+    result = get('$.user.contact["home","mobile"].number')(data);
+    // {home: 11111, mobile: 22222}
+
+    result = set('$.user.contact["home","mobile"].number')(99999)(data)
+
+    // set is Immutable, data hasn't been modified, a new refernece is returned
+    // lenses powering json-atom effectively behave like HAMT
+    // They only create new objects for the nodes from root to path, the rest of the structure is shared.
+
+    // {"user":{"contact":{"home":{"number":99999},"mobile":{"number":99999}},"posts":[{"content":"Hello World!","likes":10},{"content":"Goodbye World!","likes":1}]}}
+
+    // number fields under both branches, namely 'home' AND 'mobile' are both set to value in the new object reference
+
+
+
+
+
+
+
+```
 
 ## Possible use cases
 - Redux Store Like Behavior around any JSON reference
