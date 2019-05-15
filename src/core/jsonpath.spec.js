@@ -39,17 +39,18 @@ describe('get set mod', () => {
         expect(data.user.contact.mobile.number).toEqual('SHARED_REFERENCE');
     });
 
-    it('get branching path', () => {
+    it.skip('get branching path', () => {
         const data = freshData();
         const result = get('$.user.contact["home","mobile"].number')(data);
         const expectedResult = {home: data.user.contact.home.number, mobile: data.user.contact.mobile.number};
         expect(result).toEqual(expectedResult);
     });
 
-    it('set branching path', () => {
+    it.skip('set branching path', () => {
         const data = freshData();
         const result = set('$.user.contact["home","mobile"].number')(99999)(data);
         expect(result.user.contact.home.number).toEqual(result.user.contact.mobile.number);
         expect(result.user.contact.home.number).toEqual(99999);
+        expect(result.user.contact.emergency.number).toEqual(999111);
     });
 });
