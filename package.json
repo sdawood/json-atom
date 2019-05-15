@@ -13,6 +13,7 @@
     "travis-deploy-once": "travis-deploy-once"
   },
   "dependencies": {
+    "functional-pipelines": "^1.2.1",
     "jsonpath": "^1.0.1",
     "shades": "^2.0.0"
   },
