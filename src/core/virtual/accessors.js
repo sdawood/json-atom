@@ -1,10 +1,10 @@
 const F = require('functional-pipelines');
 
-const {get: getPath, set: setPath} = require('../../index');
+const jsonpath = require('../../index');
 
 const catcher = function (keys) {
-    const setInto = self => path => value => setPath(path[0] === '$' ? path : `$.${path}`)(value)(self);
-    const getFrom = self => path => getPath(path[0] === '$' ? path : `$.${path}`)(self);
+    const setInto = self => path => value => jsonpath.set(path[0] === '$' ? path : `$.${path}`)(value)(self);
+    const getFrom = self => path => jsonpath.get(path[0] === '$' ? path : `$.${path}`)(self);
 
     return {
         ['___KEYS']() {
@@ -43,5 +43,7 @@ const catcher = function (keys) {
 };
 
 module.exports = {
-    catcher
+    catcher,
+    getPath: jsonpath.get,
+    setPath: jsonpath.set
 };
