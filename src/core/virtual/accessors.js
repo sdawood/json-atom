@@ -1,6 +1,6 @@
 const F = require('functional-pipelines');
 
-const jsonpath = require('../../index');
+const jsonpath = require('../jsonpath');
 
 const catcher = function (keys) {
     const setInto = self => path => value => jsonpath.set(path[0] === '$' ? path : `$.${path}`)(value)(self);
